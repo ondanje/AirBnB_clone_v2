@@ -142,5 +142,5 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 <br>
 
 Update to the console meant to shift the storage system to MySql using SQLAlchemy
-
+Meant to offer a better alternative to the FileStorage System
 <br>
