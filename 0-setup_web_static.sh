@@ -19,8 +19,8 @@ sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 chown -R ubuntu:ubuntu /data/
 
 #editing the nginx config file
-config_nginx="/etc/nginx/sites-available/default/"
-sudo sed -i '/hbnb_static/ {N; s/location \/ {/location \/hbnb_static\/ {alias \/data\/web_static\/current\/;}/ } }' "$config_nginx"
+str="\\\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\tindex index.html 0-index.html 0-index.htm;\n\t}"
+sudo sed -i "/^\tserver_name .*;/a ${str}" /etc/nginx/sites-enabled/default
 
 # restart nginx
 sudo service nginx restart
