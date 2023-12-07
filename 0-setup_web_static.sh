@@ -8,7 +8,7 @@ sudo apt-get -y install nginx
 sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
 
-#creating sample html file
+#creating sample html file for  testing
 sudo touch /data/web_static/releases/test/index.html
 echo "Hello there, I'm Cyril!" | sudo tee /data/web_static/releases/test/index.html > /dev/null
 
@@ -22,5 +22,5 @@ chown -R ubuntu:ubuntu /data/
 config_nginx="/etc/nginx/sites-available/default/"
 sudo sed -i '/hbnb_static/ {N; s/location \/ {/location \/hbnb_static\/ {alias \/data\/web_static\/current\/;}/ } }' "$config_nginx"
 
-#restart nginx
+# restart nginx
 sudo service nginx restart
