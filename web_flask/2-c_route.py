@@ -17,12 +17,12 @@ def display():
 
 
 @app.route('/c/<text>', strict_slashes=False)
-def display_c(text=None):
+def display_c(text):
     """
     display “C ” followed by the value of the text
     variable (replace underscore _ symbols with a space )
     """
-    return "C {}".format(text.replace('_', ''))
+    return "C {}".format(text.replace('_', ' '))
 
 
 if __name__ == '__main__':
