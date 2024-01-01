@@ -13,7 +13,8 @@ class FileStorage:
         if cls is None:
             return self.__objects
         else:
-            filtered_objects = {k: v for k, v in self.__objects.items() if isinstance(v, cls)}
+            filtered_objects = {k: v for k, v in self.__objects.items()
+                                if isinstance(v, cls)}
             return filtered_objects
 
     def new(self, obj):
@@ -49,7 +50,7 @@ class FileStorage:
             with open(FileStorage.__file_path, 'r') as f:
                 temp = json.load(f)
                 for key, val in temp.items():
-                        self.all()[key] = classes[val['__class__']](**val)
+                    self.all()[key] = classes[val['__class__']](**val)
         except FileNotFoundError:
             pass
 
@@ -62,3 +63,7 @@ class FileStorage:
             if key in self.__objects:
                 del self.__objects[key]
                 self.save()
+
+    def close(self):
+        """call reload() method for deserializing the JSON file to objects"""
+        self.reload()
